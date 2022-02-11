@@ -19,7 +19,7 @@ Here is a graph to show the difference between using and not using Sandbox.
 ```python
 from jina import Flow, Document
 
-f = Flow().add(uses='jinahub+sandbox://MiaoTestExecutor1')
+f = Flow().add(uses='jinahub+sandbox://Hello')
 
 with f:
   r = f.post('/', inputs=Document(text='world'), return_results=True)
@@ -66,7 +66,7 @@ class MyExecutor(Executor):
 
       return docs
 
-f = Flow().add(uses=MyExecutor).add(uses='jinahub+sandbox://MiaoTestExecutor1')
+f = Flow().add(uses=MyExecutor).add(uses='jinahub+sandbox://Hello')
 
 with f:
   r = f.post('/', inputs=Document(text='world'), return_results=True)
@@ -77,7 +77,11 @@ with f:
 
 There are some caveats when using Sandbox Executors with respect to other Executors.
 
+### 1. Can't be controlled by the Flow
+
 Since the lifetime of these Executors is not handled by the Flow and is handled by the Hub infrastructure, there is no way
 to override its default configurations, therefore `uses_with`, `uses_metas`, etc ... will not apply.
 
-You can consider a `sandbox` Executor as an external Executor where no control on its initialization or configuraiton.
+You can consider a `sandbox` Executor as an external Executor where no control on its initialization or configuration.
+
+### 2. Don't support GPU
