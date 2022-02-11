@@ -39,7 +39,7 @@ It will find the existing sandbox by three factors:
 - Executor tag
 - Jina version of the Driver program
 
-If all these three factors are matched, then it will reuse the existing sandboxes.
+If all these three factors match, then it will reuse the existing sandboxes.
 
 ```{admonition} Caution
 :class: caution
@@ -52,7 +52,6 @@ The Jina version inside the Sandbox will be the same as the one in the place whe
 
 ## Mixed with non-sandbox Executors
 
-It can also be mixed with non-sandbox Executors.
 
 ```python
 from jina import Flow, Document, DocumentArray, Executor, requests
@@ -82,6 +81,6 @@ There are some caveats when using Sandbox Executors with respect to other Execut
 Since the lifetime of these Executors is not handled by the Flow and is handled by the Hub infrastructure, there is no way
 to override its default configurations, therefore `uses_with`, `uses_metas`, etc ... will not apply.
 
-You can consider a `sandbox` Executor as an external Executor where no control on its initialization or configuration.
+You can consider a Sandbox Executor as an external Executor where you have no control over its initialization or configuration.
 
 ### 2. Don't support GPU
